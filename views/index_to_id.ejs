@@ -1,0 +1,47 @@
+<html>
+<head>
+  <style>
+    h1{
+      text-align:center;
+      font-size:80px;
+    }
+    .feature{
+      text-align:center;
+      font-size:30px;
+    }
+    .adress_parent{
+      width:100%;
+      text-align:center;
+    }
+    .adress{
+      font-size:30px;
+    }
+    .place p{
+      font-size:30px;
+      text-align:center;
+    }
+    .display{
+      width:100%;
+      text-align:center;
+    }
+    .display a{
+      font-size:30px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1><%=data.name%></h1>
+  <p class="feature"><%= data.feature %></p>
+  <div class="adress_parent">
+    <a class="adress" href="<%=data.URL%>">ホームページ</a>
+  </div>
+  <div class="place">
+    <p>・住所</p>
+    <p><%=data.adress%></p>
+  </div>
+  <div class="display">
+    <a href = "/map/<%=data.id%>">地図上で表示</a>
+  </div>
+</body>
+</html>

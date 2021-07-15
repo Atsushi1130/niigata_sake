@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>新潟酒蔵マップ</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.0/dist/leaflet.css" />
+  <link rel="stylesheet" href="niigata_sake_map.css">
+  <script src="https://unpkg.com/leaflet@1.3.0/dist/leaflet.js"></script>
+  <style>
+    #index_button{
+      position:absolute;
+      bottom:0;
+      display:block;
+      width:100%;
+      height:100px;
+      font-size:50px;
+      color:white;
+      text-align:center;
+      background-color:#6795fd;
+      text-decoration: none;
+    }
+  </style>
+  <script>
+    function init() {
+      //地図を表示するdiv要素のidを設定
+      var map = L.map('mapcontainer');
+      //地図の中心とズームレベルを指定
+      map.setView([<%= data.latitude %>, <%= data.longitude %>], 10);
+      //表示するタイルレイヤのURLとAttributionコントロールの記述を設定して、地図に追加する
+      L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png', {attribution: "<a href='https://maps.gsi.go.jp/development/ichiran.html' target='_blank'>地理院タイル</a>"}).addTo(map);
+
+      var popup = L.popup().setContent('<%=data.name%><br><a href="/index/<%=data.id%>">詳細</a>')
+      L.marker([<%=data.latitude%>,<%=data.longitude%>]).bindPopup(popup).addTo(map);
+
+      // var mpoint = [37.9161, 139.0364];
+      // L.marker(mpoint,{title:"name"}).addTo(map);
+
+      // var mpoint = [37.9161, 139.0364];
+      // L.marker(mpoint,{title:"name"}).addTo(map);
+
+    };
+  </script>
+</head>
+<body onload="init()">
+  <div id="mapcontainer" style="position:absolute;top:0;left:0;right:0;bottom:100px;"></div>
+  <a id = "index_button" href = "/">全体マップに戻る</a>
+</body>
+</html>
